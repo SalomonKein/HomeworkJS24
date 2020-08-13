@@ -45,7 +45,7 @@ function buttonClick(event) {
         arrArg.push(arrDisp.join(''));
         arrDisp = [];
         arrArg.push(target.value);
-
+        
         let selected = box.querySelectorAll('.active');
         for (let elem of selected) {
             elem.classList.remove('active');
@@ -55,15 +55,15 @@ function buttonClick(event) {
     let a = "";
     let b = "";
 
-    // if (target.classList.contains("active")){}
+  
     // let result = input.setAttribute('value', target.value);
     // console.log(target.classList.contains("active"))
     if (target.value == "0" || target.value == "1" || target.value == "2" || target.value == "3" || target.value == "4" || target.value == "5" || target.value == "6" || target.value == "7" || target.value == "8" || target.value == "9" || target.value == ".") {
-        a = 'firstNum' + target.value;
+        // arrArg.push(arrDisp.join(''));
+        
         arrDisp.push(target.value);
-        // console.log(a);
         target.classList.add('active');
-        // console.log('firstNum');
+        input.setAttribute('value', arrDisp.join(''));
     } else {
         b = a + target.value;
 
@@ -72,15 +72,24 @@ function buttonClick(event) {
 
     if (target.value == "=") {
         arrArg.push(arrDisp.join(''));
-        arrArg.push(target.value);
-        arrDisp = [];
-        arrArg = []
-        let result = eval(arrArg.join(''));
+        // arrArg.push(target.value);
+        
+        let result = arrArg.join('');
         // eval(result);
-
-        console.log('result=' + result);
+        input.setAttribute('value', eval(result));
+        console.log(arrArg);
+        console.log('result=' + eval(result));
+        arrDisp = [];
+        arrArg = [];
+        // arrDisp.push(eval(result));
+    };
+    if (target.value == "C") {
+        let result = "0";
+        input.setAttribute('value', result);
+        arrDisp = [];
+        arrArg = [];
     };
 
     console.log(arrDisp.join(''));
-    // console.log(firstNum);
+    
 }
