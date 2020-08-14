@@ -1,24 +1,3 @@
-// let notification = document.createElement('span');
-// document.onkeypress = function(event) {
-//     let selected = document.querySelectorAll('.active');
-
-//     for (let elem of selected) {
-//         elem.classList.remove('active');
-//     }
-//     if (event.charCode == "13" || event.charCode == "115" || event.charCode == "101" || event.charCode == "111" || event.charCode == "110" || event.charCode == "108" || event.charCode == "122") {
-//         let activeBtn = document.getElementById(`${event.charCode}`);
-//         activeBtn.classList.add('active')
-//         activeBtn.innerHTML = `${event.key}`
-//     }
-//     if (event.charCode == "83" || event.charCode == "69" || event.charCode == "79" || event.charCode == "78" || event.charCode == "76" || event.charCode == "90") {
-//         let activeBtn = document.getElementById(`${(event.charCode + 32)}`);
-//         activeBtn.classList.add('active')
-//         activeBtn.innerHTML = `${event.key}`
-//     }
-
-
-// }
-
 let box = document.querySelector(".box");
 let action = "";
 let input = box.querySelector("input");
@@ -70,7 +49,10 @@ function buttonClick(event) {
         arrDisp = [];
         arrArg = [];
     };
-    if (target.value == "m+" || target.value == "m-") {
+    if (target.value == "m+") {
+        if (document.querySelector(".memory")) {
+            return;
+        }
         mrc = input.value;
         let memory = document.createElement("p");
         memory.className = 'memory';
@@ -82,21 +64,17 @@ function buttonClick(event) {
         memory.innerHTML = "m";
         document.querySelector(".display").prepend(memory);
     };
+    if (target.value == "m-") {
+        if (mrc == "") { return };
+        mrc = "";
+        document.querySelector(".memory").remove();
+    }
+
     if (target.value == "mrc") {
-        if (document.querySelector(".memory").classList.contains("inMemory")) {
-            arrDisp.push(mrc);
-            arrDisp = [];
-            mrc = "";
-            document.querySelector(".memory").classList.remove('inMemory');
-            document.querySelector(".memory").innerHTML = "";
-
-        } else {
-            let result = mrc;
-            input.setAttribute('value', result);
-            document.querySelector(".memory").classList.add('inMemory');
-
-        };
-
+        let result = mrc;
+        if (result == "") { return };
+        input.setAttribute('value', result);
+        arrDisp.push(result);
     }
 }
 document.onkeypress = function(event) {
@@ -145,7 +123,10 @@ document.onkeypress = function(event) {
         arrDisp = [];
         arrArg = [];
     };
-    if (event.charCode == "119" || event.charCode == "101") {
+    if (event.charCode == "119") {
+        if (document.querySelector(".memory")) {
+            return;
+        }
         mrc = input.value;
         let memory = document.createElement("p");
         memory.className = 'memory';
@@ -157,19 +138,16 @@ document.onkeypress = function(event) {
         memory.innerHTML = "m";
         document.querySelector(".display").prepend(memory);
     };
+    if (event.charCode == "101") {
+        if (mrc == "") { return };
+        mrc = "";
+        document.querySelector(".memory").remove();
+    }
+
     if (event.charCode == "113") {
-        if (document.querySelector(".memory").classList.contains("inMemory")) {
-            arrDisp.push(mrc);
-            arrDisp = [];
-            mrc = "";
-            document.querySelector(".memory").classList.remove('inMemory');
-            document.querySelector(".memory").innerHTML = "";
-
-        } else {
-            let result = mrc;
-            input.setAttribute('value', result);
-            document.querySelector(".memory").classList.add('inMemory');
-
-        }
+        let result = mrc;
+        if (result == "") { return };
+        input.setAttribute('value', result);
+        arrDisp.push(result);
     };
 }
