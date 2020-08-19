@@ -35,8 +35,12 @@ function buttonClick(event) {
         input.setAttribute('value', arrDisp.join(''));
     }
     if (target.value == "=") {
+
         arrArg.push(arrDisp.join(''));
         let result = arrArg.join('');
+        if (eval(result) == undefined) {
+            return;
+        }
         input.setAttribute('value', eval(result));
         console.log(arrArg);
         console.log('result=' + eval(result));
@@ -71,10 +75,11 @@ function buttonClick(event) {
     }
 
     if (target.value == "mrc") {
+        arrDisp = [];
         let result = mrc;
         if (result == "") { return };
         input.setAttribute('value', result);
-        arrDisp.push(result);
+        // arrDisp.push(result);
     }
 }
 document.onkeypress = function(event) {
@@ -111,11 +116,15 @@ document.onkeypress = function(event) {
     if (event.keyCode == "13") {
         arrArg.push(arrDisp.join(''));
         let result = arrArg.join('');
+        if (eval(result) == undefined) {
+            return;
+        };
         input.setAttribute('value', eval(result));
         console.log(arrArg);
         console.log('result=' + eval(result));
         arrDisp = [];
         arrArg = [];
+
     };
     if (event.charCode == "99") {
         let result = "0";
@@ -145,9 +154,10 @@ document.onkeypress = function(event) {
     }
 
     if (event.charCode == "113") {
+        arrDisp = [];
         let result = mrc;
         if (result == "") { return };
         input.setAttribute('value', result);
-        arrDisp.push(result);
+        // arrDisp.push(result);
     };
 }
